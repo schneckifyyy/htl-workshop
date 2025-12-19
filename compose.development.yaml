@@ -1,0 +1,29 @@
+services:
+  web:
+    build: ./docker/nginx
+    container_name: htl_workshop_dev_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "postgresql://htl-workshop:QR5FCYWwps8Z@database:5432/htl-workshop?serverVersion=16&charset=utf8"
+    depends_on:
+      - database
+  database:
+    image: postgres:16-alpine
+    container_name: htl_workshop_dev_database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: htl-workshop
+      POSTGRES_PASSWORD: QR5FCYWwps8Z
+      POSTGRES_USER: htl-workshop
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "htl-workshop", "-U", "htl-workshop"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - ./docker/db/data:/var/lib/postgresql/data:rw
