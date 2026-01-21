@@ -29,7 +29,7 @@ services:
     container_name: database
     environment:
       POSTGRES_DB: htl-workshop
-      POSTGRES_PASSWORD: SuperSecret
+      POSTGRES_PASSWORD: SuperSecretPW
       POSTGRES_USER: htl-workshop
     healthcheck:
       test: ["CMD", "pg_isready", "-d", "htl-workshop", "-U", "htl-workshop"]
