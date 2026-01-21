@@ -13,13 +13,13 @@ services:
       - ./logs:/logs
       - ./dynamic/:/etc/traefik/dynamic/:ro
   symfony:
-    image: ghcr.io/--GH_USER--/htl-workshop:latest
+    image: ghcr.io/schneckifyyy/htl-workshop:latest
     container_name: symfony
     environment:
       APP_ENV: prod
       APP_DEBUG: 0
-      DATABASE_URL: "postgresql://htl-workshop:--DB_PW--@database:5432/htl-workshop?serverVersion=16&charset=utf8"
-      ALANCAPTCHA_API_KEY: "----"
+      DATABASE_URL: "postgresql://htl-workshop:SuperSecretPW@database:5432/htl-workshop?serverVersion=16&charset=utf8"
+      ALANCAPTCHA_API_KEY: "9a0def0dc5b494004f3908e519af3715328fc2f9"
     volumes:
       - ../htl-workshop-data/uploads/:/var/www/html/public/uploads:rw
     depends_on:
@@ -29,7 +29,7 @@ services:
     container_name: database
     environment:
       POSTGRES_DB: htl-workshop
-      POSTGRES_PASSWORD: --DB_PW--
+      POSTGRES_PASSWORD: SuperSecret
       POSTGRES_USER: htl-workshop
     healthcheck:
       test: ["CMD", "pg_isready", "-d", "htl-workshop", "-U", "htl-workshop"]
