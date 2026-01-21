@@ -19,7 +19,8 @@ services:
       APP_ENV: prod
       APP_DEBUG: 0
       DATABASE_URL: "postgresql://htl-workshop:--DB_PW--@database:5432/htl-workshop?serverVersion=16&charset=utf8"
-      ALANCAPTCHA_API_KEY: "----"
+      ALANCAPTCHA_API_KEY: 9a0def0dc5b494004f3908e519af3715328fc2f9
+
     volumes:
       - ../htl-workshop-data/uploads/:/var/www/html/public/uploads:rw
     depends_on:
